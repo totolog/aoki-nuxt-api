@@ -11,6 +11,9 @@ const users = [
 
 /* GET users listing. */
 router.get('/users', function (req, res, next) {
+  console.log('aaaa')
+  console.log('users:', users)
+
   res.json(users)
 })
 

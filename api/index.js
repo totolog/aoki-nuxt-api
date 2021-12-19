@@ -10,6 +10,8 @@ const test = require('./routes/test')
 // Import API Routes
 app.use(users)
 app.use(test)
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 // Export express app
 module.exports = app
