@@ -11,6 +11,10 @@ const UserSchema = new Schema({
   age: {
     type: Number,
     default: 0
+  },
+  permanent_staff: {
+    type: Boolean,
+    default: true
   }
 })
 

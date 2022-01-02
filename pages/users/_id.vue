@@ -7,6 +7,7 @@
       </h1>
       <p>氏名：{{ user.name }}</p>
       <p>年齢：{{ user.age }}</p>
+      <p>正社員：{{ user.permanent_staff ? 'Yes' : 'No' }}</p>
       <br>
       <button class="button" @click="toUpdatePage(user._id)">
         更新する

@@ -11,6 +11,9 @@
       <p>年齢</p>
       <input v-model="user.age">
       <br>
+      <p>正社員</p>
+      <input type="checkbox" v-model="user.permanent_staff" />
+      <br>
 
       <button @click="hundleUpdate(user._id)">
         更新する
@@ -53,7 +56,8 @@ export default {
     hundleUpdate (id) {
       axios.put(`/api/users/${id}`, {
         name: this.user.name,
-        age: this.user.age
+        age: this.user.age,
+        permanent_staff: this.user.permanent_staff
       })
         .then((response) => {
           this.$router.push('/users')
@@ -86,5 +90,8 @@ export default {
 .button
 {
   margin-top: 30px;
+}
+dl {
+  margin-bottom: 1rem;
 }
 </style>

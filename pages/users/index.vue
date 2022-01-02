@@ -12,6 +12,7 @@
             <th>id番号</th>
             <th>名前</th>
             <th>年齢</th>
+            <th>正社員</th>
             <th></th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
             </td>
             <td>{{ user.name}}</td>
             <td>{{ user.age }}</td>
+            <td>{{ user.permanent_staff ? 'Yes' : 'No' }}</td>
             <td>
               <button type='button' @click="handleDelete(user._id)">
                 削除

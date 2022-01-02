@@ -22,6 +22,18 @@
             <input name="name" v-model="state.form.age" required />
           </dt>
         </dl>
+        <dl>
+          <dt>
+            正社員
+          </dt>
+          <dt>
+            <input
+              type="checkbox"
+              name="permanent_staff"
+              v-model="state.form.permanent_staff"
+            />
+          </dt>
+        </dl>
         <!-- <button @click="createUser">新規作成</button> -->
         <button type='submit'>新規作成</button>
       </form>
@@ -43,7 +55,8 @@ export default {
       state: {
         form: {
           name: '',
-          age: 0
+          age: 0,
+          permanent_staff: true
         }
       }
     }
@@ -100,5 +113,9 @@ export default {
 {
   display: inline-block;
   margin-top: 50px;
+}
+
+dl {
+  margin-bottom: 1rem;
 }
 </style>

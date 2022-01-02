@@ -15,6 +15,7 @@ module.exports = {
     const user = new User()
     user.name = req.body.name
     user.age = req.body.age
+    user.permanent_staff = req.body.permanent_staff
     await user.save().catch((err) => {
       res.send(err)
       console.error(err)
@@ -39,6 +40,7 @@ module.exports = {
     })
     user.name = req.body.name
     user.age = req.body.age
+    user.permanent_staff = req.body.permanent_staff
     await user.save()
     return res.json(user)
   },
