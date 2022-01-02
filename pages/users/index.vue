@@ -7,7 +7,7 @@
       </h1>
       <ul class="users">
         <li v-for="(user, index) in users" :key="index" class="user">
-          <nuxt-link :to="{ name: 'users-id', params: { id: index }}">
+          <nuxt-link :to="{ name: 'users-id', params: { id: user._id }}">
             {{ user.name }}
           </nuxt-link>
         </li>
@@ -20,10 +20,23 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  async asyncData ({ $http }) {
-    const data = await $http.$get('/api/users')
-    return { users: data }
+  data () {
+    return {
+      users: []
+    }
+  },
+  // async asyncData () {
+  //   const data = await axios.$get('/api/users')
+  //   return { users: data }
+  // },
+  mounted () {
+    axios.get('/api/users/')
+      .then((response) => {
+        this.users = response.data
+        console.log('this.users:', this.users)
+      })
   },
   head () {
     return {

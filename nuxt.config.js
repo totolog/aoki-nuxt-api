@@ -46,7 +46,8 @@ export default {
   */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    '@nuxtjs/eslint-module'
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/composition-api/module'
   ],
 
   /*
@@ -54,8 +55,15 @@ export default {
   */
   modules: [
     // Doc: https://http.nuxtjs.org
-    '@nuxt/http'
+    '@nuxtjs/axios'
   ],
+  /*
+  ** Axios module configuration
+  ** See https://axios.nuxtjs.org/options
+  */
+  axios: {
+    baseURL: 'https://jsonplaceholder.typicode.com/'
+  },
 
   /*
   ** Server Middleware

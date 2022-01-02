@@ -1,6 +1,5 @@
 const express = require('express')
-
-// Create express instance
+const mongoose = require('mongoose')
 const app = express()
 const router = require('./routes')
 
@@ -11,6 +10,7 @@ const router = require('./routes')
 // Import API Routes
 // app.use(users)
 // app.use(test)
+mongoose.connect('mongodb://localhost:27017/user')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use('/', router)
