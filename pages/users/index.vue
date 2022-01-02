@@ -5,15 +5,39 @@
       <h1 class="title">
         USERS
       </h1>
-      <ul class="users">
-        <li v-for="(user, index) in users" :key="index" class="user">
-          <nuxt-link :to="{ name: 'users-id', params: { id: user._id }}">
-            {{ user.name }}
-          </nuxt-link>
-        </li>
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>番号</th>
+            <th>id番号</th>
+            <th>名前</th>
+            <th>年齢</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(user, index) in users" :key="index" class="user">
+            <td>{{ index+1 }}</td>
+            <td>
+              <nuxt-link :to="{ name: 'users-id', params: { id: user._id }}">
+                {{ user._id }}
+              </nuxt-link>
+            </td>
+            <td>{{ user.name}}</td>
+            <td>{{ user.age }}</td>
+            <td>
+              <button type='button' @click="handleDelete(user._id)">
+                削除
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <nuxt-link class="button" to="/users/create">
+        ユーザーを作成する
+      </nuxt-link>
       <nuxt-link class="button" to="/">
-        Homepage
+        トップへ戻る
       </nuxt-link>
     </div>
   </section>
@@ -27,10 +51,13 @@ export default {
       users: []
     }
   },
-  // async asyncData () {
-  //   const data = await axios.$get('/api/users')
-  //   return { users: data }
-  // },
+
+  head () {
+    return {
+      title: 'Users'
+    }
+  },
+
   mounted () {
     axios.get('/api/users/')
       .then((response) => {
@@ -38,15 +65,37 @@ export default {
         console.log('this.users:', this.users)
       })
   },
-  head () {
-    return {
-      title: 'Users'
+
+  methods: {
+    handleDelete (id) {
+      console.log(id)
+      axios.delete(`/api/users/${id}`)
+        .then((response) => {
+          console.log('削除できました')
+          this.$router.push('/')
+        })
     }
   }
+
 }
 </script>
 
 <style scoped>
+table {
+  border-top: 1px solid #98989898;
+  border-left: 1px solid #98989898;
+  border-spacing: 0;
+  border-collapse: separate;
+}
+
+table th, td {
+  padding: 0.5rem;
+  text-align: left;
+  border-right: 1px solid #989898;
+  border-bottom: 1px solid #989898;
+  white-space: nowrap;
+  text-align: center;
+}
 .container {
   margin: 0 auto;
   min-height: 100vh;

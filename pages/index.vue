@@ -6,14 +6,6 @@
         nuxt-iexpress
       </h1>
       <div>
-        <input v-model="name">
-        <input v-model="age">
-        <button @click="createUser">新規作成</button>
-        <ul>
-          <li v-for="(user, key) in users" :key="key">
-            {{ user.name }}
-          </li>
-        </ul>
         <div class="links">
           <a
             href="/users"
@@ -46,44 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-
-  data () {
-    return {
-      users: [],
-      name: '',
-      age: 0
-    }
-  },
-
-  mounted () {
-    axios.get('/api/users/')
-      .then((response) => {
-        this.users = response.data
-        console.log('response:', response.data)
-      })
-      .catch(error => console.log(error))
-  },
-
-  methods: {
-    createUser () {
-      console.log('name:', this.name)
-      console.log('age:', this.age)
-
-      axios.post('/api/users/', {
-        name: this.name,
-        age: this.age
-      })
-        .then((response) => {
-          // this.users.unshift(response.data)
-          console.log('create success:', response.data)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
 }
 </script>
 

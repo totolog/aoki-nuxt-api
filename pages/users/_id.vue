@@ -5,9 +5,9 @@
       <h1 class="title">
         User
       </h1>
-      <h2 class="info">
-        {{ user.name }}
-      </h2>
+      <h2 class="info">ユーザー情報</h2>
+      <p>氏名：{{ user.name }}</p>
+      <p>年齢：{{ user.age }}</p>
       <nuxt-link class="button" to="/users">
         Users
       </nuxt-link>
@@ -16,16 +16,26 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
-  asyncData ({ params, error, $http }) {
-    return $http.$get('/api/users/' + params.id)
-      .then((res) => {
-        return { user: res }
+  asyncData ({ params, error }) {
+    console.log(params.id)
+    return axios.get(`/api/users/${params.id}`)
+      .then((response) => {
+        return { user: response.data }
       })
       .catch((e) => {
-        error({ statusCode: 404, message: 'User not found' })
+        error({ statusCode: 404, message: 'Post not found' })
       })
   },
+
+  data () {
+    return {
+      user: {},
+      name: ''
+    }
+  },
+
   head () {
     return {
       title: `User: ${this.user.name}`

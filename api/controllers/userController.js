@@ -26,7 +26,6 @@ module.exports = {
   // 特定のユーザーを取得する。
   find_user: async (req, res) => {
     console.log('req.params:', req.params)
-    console.log('req.query:', req.query)
     const user = await User.findById(req.params.id).catch((err) => {
       res.send(err)
       console.error(err)
