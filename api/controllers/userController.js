@@ -12,7 +12,6 @@ module.exports = {
 
   // 新しいユーザーを作成する。
   create_user: async (req, res) => {
-    console.log('reqbody:', req.body)
     const user = new User()
     user.name = req.body.name
     user.age = req.body.age
@@ -25,7 +24,6 @@ module.exports = {
 
   // 特定のユーザーを取得する。
   find_user: async (req, res) => {
-    console.log('req.params:', req.params)
     const user = await User.findById(req.params.id).catch((err) => {
       res.send(err)
       console.error(err)

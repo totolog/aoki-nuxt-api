@@ -57,9 +57,6 @@ export default {
 
   methods: {
     createUser () {
-      console.log('name1:', this.state.form.name)
-      console.log('age1:', this.state.form.age)
-
       axios.post('/api/users/', {
         name: this.state.form.name,
         age: this.state.form.age
