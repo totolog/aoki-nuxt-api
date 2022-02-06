@@ -15,6 +15,16 @@
           </a>
         </div>
       </div>
+      <div>
+        <div class="links">
+          <nuxt-link
+            to="/products"
+            class="button--green"
+          >
+            Products List
+          </nuxt-link>
+        </div>
+      </div>
       <div class="links">
         <a
           href="https://nuxtjs.org/"

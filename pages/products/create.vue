@@ -3,42 +3,40 @@
     <div>
       <Logo />
       <h1 class="title">
-        CREATE USERS
+        CREATE Products
       </h1>
-      <form @submit.prevent="createUser" method="post">
+      <form @submit.prevent="createProduct" method="post">
         <dl>
-          <dt>名前</dt>
+          <dt>商品名</dt>
           <dt>
-            <input
-              v-model="state.form.name"
-            />
+            <input name="name" v-model="state.form.name" />
           </dt>
         </dl>
         <dl>
           <dt>
-            年齢
+            価格
           </dt>
           <dt>
-            <input name="name" v-model="state.form.age" required />
+            <input name="name" v-model="state.form.price" required />
           </dt>
         </dl>
         <dl>
           <dt>
-            正社員
+            公開/非公開
           </dt>
           <dt>
             <input
               type="checkbox"
-              name="permanent_staff"
-              v-model="state.form.permanent_staff"
+              name="name"
+              v-model="state.form.isStatus"
             />
           </dt>
         </dl>
         <!-- <button @click="createUser">新規作成</button> -->
         <button type='submit'>新規作成</button>
       </form>
-      <nuxt-link class="button" to="/users">
-        ユーザー一覧
+      <nuxt-link class="button" to="/products">
+        商品一覧
       </nuxt-link>
       <nuxt-link class="button" to="/">
         トップへ戻る
@@ -55,8 +53,8 @@ export default {
       state: {
         form: {
           name: '',
-          age: 0,
-          permanent_staff: true
+          price: 0,
+          isStatus: false
         }
       }
     }
@@ -64,20 +62,21 @@ export default {
 
   head () {
     return {
-      title: 'Users'
+      title: 'Products'
     }
   },
 
   methods: {
-    createUser () {
+    createProduct () {
       console.log('state:', this.state.form)
-      axios.post('/api/users/', {
+      axios.post('/api/products/', {
         name: this.state.form.name,
-        age: this.state.form.age
+        price: this.state.form.price,
+        isStatus: this.state.form.isStatus
       })
         .then((response) => {
           console.log('create success:', response.data)
-          this.$router.push('/users')
+          this.$router.push('/products')
         })
         .catch((error) => {
           console.log(error)

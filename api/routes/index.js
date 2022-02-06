@@ -3,10 +3,10 @@ const router = express.Router()
 
 const users = require('./users')
 const books = require('./books')
-const products2 = require('./products.js')
+const products = require('./products')
 
 router.use('/users', users)
 router.use('/books', books)
-router.use('/products2', products2)
+router.use('/products', products)
 
 module.exports = router
